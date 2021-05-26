@@ -28,12 +28,12 @@ public class App {
 			
 		
 		// 여기부터는 파이어베이스 연동 테스트용 코드
-		DocumentReference docRef = db.collection("users").document("alovelace");
+		DocumentReference docRef = db.collection("users").document("홍길동");
 		// Add document data  with id "alovelace" using a hashmap
 		Map<String, Object> data = new HashMap<>();
-		data.put("first", "Ada");
-		data.put("last", "Lovelace");
-		data.put("born", 1815);
+		data.put("생일", "0525");
+		data.put("나이", "20");
+		data.put("성별", "남");
 		//asynchronously write data
 		ApiFuture<WriteResult> result = docRef.set(data);
 		// ...
@@ -41,16 +41,16 @@ public class App {
 		System.out.println("Update time : " + result.get().getUpdateTime());
 			
 		
-		DocumentReference docRef2 = db.collection("users").document("aturing");
+		//DocumentReference docRef2 = db.collection("users").document("aturing");
 		// Add document data with an additional field ("middle")
-		Map<String, Object> data2 = new HashMap<>();
-		data.put("first", "Alan");
-		data.put("middle", "Mathison");
-		data.put("last", "Turing");
-		data.put("born", 1912);
+		//Map<String, Object> data2 = new HashMap<>();
+		//data.put("first", "Alan");
+		//data.put("middle", "Mathison");
+		//data.put("last", "Turing");
+		//data.put("born", 1912);
 		
-		ApiFuture<WriteResult> result2 = docRef.set(data);
-		System.out.println("Update time : " + result.get().getUpdateTime());
+		//ApiFuture<WriteResult> result2 = docRef2.set(data);
+		//System.out.println("Update time : " + result.get().getUpdateTime());
 			
 			
 		// asynchronously retrieve all users
@@ -61,12 +61,12 @@ public class App {
 		List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
 		for (QueryDocumentSnapshot document : documents) {
 			System.out.println("User: " + document.getId());
-			System.out.println("First: " + document.getString("first"));
+			System.out.println("생일: " + document.getString("생일"));
 			if (document.contains("middle")) {
 			    System.out.println("Middle: " + document.getString("middle"));
 			}
-			System.out.println("Last: " + document.getString("last"));
-			System.out.println("Born: " + document.getLong("born"));
+			System.out.println("나이: " + document.getString("나이"));
+			System.out.println("성별: " + document.getString("성별")); // 숫자형일 경우 getLong 사용
 		}
 	}
 }

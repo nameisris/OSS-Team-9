@@ -7,7 +7,6 @@ import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.win32.StdCallLibrary;
 
 public class main {
-	
 	// Window 클래스형 ArrayList
 	// 프로그램 명, 탭 명, 시작 시간이 들어감
 	static ArrayList<Window> windows = new ArrayList<Window>();
@@ -97,8 +96,8 @@ class GetWindowProcess extends Thread {
 		    Thread.sleep(1000);
 			
 		    
-		    int j = 0;
-		    while(j < 10) {
+		    //int j = 0;
+		    while(true) {
 
 		    	tabName = "";
 		    	
@@ -126,7 +125,7 @@ class GetWindowProcess extends Thread {
 			    		&& tabName.equals(windows.get(windows.size() - 1).getTabName())) {
 				    // 1초 주기로 반복
 				    Thread.sleep(1000);
-				    j++;
+				    //j++;
 				    
 			    	continue;
 			    }
@@ -148,7 +147,7 @@ class GetWindowProcess extends Thread {
 			    
 			    // 1초 주기로 반복
 			    Thread.sleep(1000);
-			    j++;
+			    //j++;
 		    }
 
 
