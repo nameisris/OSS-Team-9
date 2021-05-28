@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class Register extends JFrame {
+public class RegisterFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField idTextField;
@@ -31,7 +31,7 @@ public class Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register frame = new Register();
+					RegisterFrame frame = new RegisterFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,8 @@ public class Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Register() {
+	public RegisterFrame() {
+		setTitle("Window Time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 785, 600);
 		contentPane = new JPanel();
@@ -97,6 +98,7 @@ public class Register extends JFrame {
 		contentPane.add(passwordField2);
 		
 		JButton idCheckButton = new JButton("\uC911\uBCF5\uD655\uC778");
+		idCheckButton.setBackground(Color.WHITE);
 		idCheckButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
 		idCheckButton.setBounds(542, 104, 163, 34);
 		idCheckButton.addActionListener(v->{
@@ -106,6 +108,7 @@ public class Register extends JFrame {
 		
 		
 		JButton registerButton = new JButton("\uAC00\uC785");
+		registerButton.setBackground(Color.WHITE);
 		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
 		registerButton.setBounds(258, 443, 122, 54);
 		registerButton.addActionListener(v->{
@@ -124,17 +127,22 @@ public class Register extends JFrame {
 		contentPane.add(registerButton);
 		
 		JButton cancelButton = new JButton("\uCDE8\uC18C");
+		cancelButton.setBackground(Color.WHITE);
 		cancelButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
-		cancelButton.setBounds(472, 443, 114, 54);
+		cancelButton.setBounds(472, 443, 122, 54);
 		cancelButton.addActionListener(v->{
-			JFrame loginFrame = new Login();
+			JFrame loginFrame = new LoginFrame();
 			setVisible(false);
 			dispose();
 		});
 		contentPane.add(cancelButton);
 		
+		JLabel lblNewLabel_5 = new JLabel("8~16\uC790\uB9AC\uB85C \uC785\uB825\uD574\uC8FC\uC138\uC694");
+		lblNewLabel_5.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		lblNewLabel_5.setBounds(542, 162, 192, 35);
+		contentPane.add(lblNewLabel_5);
+		
 		UIUtil.centreWindow(this);
 		setVisible(true);
 	}
-
 }

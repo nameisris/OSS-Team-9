@@ -16,7 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class Login extends JFrame {
+public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField idField;
@@ -29,7 +29,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					LoginFrame frame = new LoginFrame();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,10 +40,10 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
-		setTitle("\u25CBWindow Time");
+	public LoginFrame() {
+		setTitle("Window Time");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 785, 600);
+		setBounds(100, 100, 440, 360);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,29 +51,30 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uC544\uC774\uB514");
-		lblNewLabel.setFont(new Font("±¼¸²", Font.PLAIN, 30));
-		lblNewLabel.setBounds(139, 186, 101, 63);
+		lblNewLabel.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		lblNewLabel.setBounds(0, 125, 74, 47);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uBE44\uBC00\uBC88\uD638");
-		lblNewLabel_1.setFont(new Font("±¼¸²", Font.PLAIN, 30));
-		lblNewLabel_1.setBounds(112, 276, 128, 63);
+		lblNewLabel_1.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		lblNewLabel_1.setBounds(0, 215, 128, 63);
 		contentPane.add(lblNewLabel_1);
 		
 		idField = new JTextField();
 		idField.setFont(new Font("±¼¸²", Font.PLAIN, 20));
-		idField.setBounds(324, 199, 150, 47);
+		idField.setBounds(104, 126, 150, 47);
 		contentPane.add(idField);
 		idField.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("±¼¸²", Font.PLAIN, 20));
-		passwordField.setBounds(324, 289, 150, 47);
+		passwordField.setBounds(104, 224, 150, 47);
 		contentPane.add(passwordField);
 		
 		JButton loginButton = new JButton("\uB85C\uADF8\uC778");
-		loginButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
-		loginButton.setBounds(512, 199, 128, 50);
+		loginButton.setBackground(Color.WHITE);
+		loginButton.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		loginButton.setBounds(266, 125, 134, 46);
 		
 		loginButton.addActionListener((v)->{
 			String id = idField.getText();
@@ -86,12 +87,13 @@ public class Login extends JFrame {
 		contentPane.add(loginButton);
 		
 		JButton registerButton = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
-		registerButton.setBounds(512, 289, 179, 50);
+		registerButton.setBackground(Color.WHITE);
+		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		registerButton.setBounds(266, 223, 134, 47);
 		
 		registerButton.addActionListener( v -> {
 			// È¸¿ø°¡ÀÔ Ã³¸®
-			JFrame register = new Register();
+			JFrame register = new RegisterFrame();
 			setVisible(false);
 			dispose();
 		});
@@ -99,7 +101,7 @@ public class Login extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Window Time");
 		lblNewLabel_2.setFont(new Font("±¼¸²", Font.PLAIN, 40));
-		lblNewLabel_2.setBounds(287, 45, 263, 47);
+		lblNewLabel_2.setBounds(71, 28, 263, 47);
 		contentPane.add(lblNewLabel_2);
 		
 
