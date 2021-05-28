@@ -10,7 +10,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>14</release>
+          <release>8</release>
         </configuration>
       </plugin>
     </plugins>
@@ -44,49 +44,24 @@
       <artifactId>google-cloud-firestore</artifactId>
       <version>2.4.0</version>
     </dependency>  
-    <!--  Java FX -->
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+  
+    <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
 	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-controls</artifactId>
-	    <version>11.0.2</version>
+	    <groupId>net.java.dev.jna</groupId>
+	    <artifactId>jna</artifactId>
+	    <version>5.8.0</version>
 	</dependency>
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+	    
+	    <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform -->
 	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-base</artifactId>
-	    <version>11.0.2</version>
+	    <groupId>net.java.dev.jna</groupId>
+	    <artifactId>jna-platform</artifactId>
+	    <version>5.8.0</version>
 	</dependency>
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-fxml</artifactId>
-	    <version>11.0.2</version>
-	</dependency>
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-graphics</artifactId>
-	    <version>11.0.2</version>
-	</dependency>
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-media -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-media</artifactId>
-	    <version>11.0.2</version>
-	</dependency>
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-swing</artifactId>
-	    <version>11.0.2</version>
-	</dependency>
-	    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-web -->
-	<dependency>
-	    <groupId>org.openjfx</groupId>
-	    <artifactId>javafx-web</artifactId>
-	    <version>11.0.2</version>
-	</dependency>
-    
+    <dependency>
+        <groupId>org.knowm.xchart</groupId>
+        <artifactId>xchart</artifactId>
+        <version>3.8.0</version>
+    </dependency>
   </dependencies>
 </project>
