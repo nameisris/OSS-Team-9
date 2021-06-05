@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame {
 
@@ -45,7 +47,7 @@ public class LoginFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 360);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -72,7 +74,9 @@ public class LoginFrame extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton loginButton = new JButton("\uB85C\uADF8\uC778");
-		loginButton.setBackground(Color.WHITE);
+		loginButton.addActionListener(new ActionListener() {
+		});
+		loginButton.setBackground(SystemColor.control);
 		loginButton.setFont(new Font("±¼¸²", Font.PLAIN, 25));
 		loginButton.setBounds(266, 125, 134, 46);
 		
@@ -87,7 +91,9 @@ public class LoginFrame extends JFrame {
 		contentPane.add(loginButton);
 		
 		JButton registerButton = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		registerButton.setBackground(Color.WHITE);
+		registerButton.addActionListener(new ActionListener() {
+		});
+		registerButton.setBackground(SystemColor.control);
 		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 25));
 		registerButton.setBounds(266, 223, 134, 47);
 		

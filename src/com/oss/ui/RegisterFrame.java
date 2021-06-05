@@ -10,11 +10,15 @@ import javax.swing.border.EmptyBorder;
 import com.oss.util.UIUtil;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
 
 public class RegisterFrame extends JFrame {
 
@@ -48,7 +52,7 @@ public class RegisterFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 785, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -98,7 +102,9 @@ public class RegisterFrame extends JFrame {
 		contentPane.add(passwordField2);
 		
 		JButton idCheckButton = new JButton("\uC911\uBCF5\uD655\uC778");
-		idCheckButton.setBackground(Color.WHITE);
+		idCheckButton.addActionListener(new ActionListener() {
+		});
+		idCheckButton.setBackground(SystemColor.control);
 		idCheckButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		idCheckButton.setBounds(542, 104, 163, 34);
 		idCheckButton.addActionListener(v->{
@@ -108,7 +114,9 @@ public class RegisterFrame extends JFrame {
 		
 		
 		JButton registerButton = new JButton("\uAC00\uC785");
-		registerButton.setBackground(Color.WHITE);
+		registerButton.addActionListener(new ActionListener() {
+		});
+		registerButton.setBackground(SystemColor.control);
 		registerButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		registerButton.setBounds(258, 443, 122, 54);
 		registerButton.addActionListener(v->{
@@ -118,16 +126,40 @@ public class RegisterFrame extends JFrame {
 			String password2 = new String(passwordField2.getPassword());
 			
 			if(!password1.equals(password2)) { // 비밀번호 두개 다를 때
-				System.out.println("비밀번호 두개가 다르다");
-			}else {
+				System.out.println("비밀번호가 일치하지 않습니다");
+				JOptionPane.showMessageDialog(null,"비밀번호가 일치하지 않습니다");
+				passwordField.requestFocus(true);
+			}else if(id.equals("")){
+				System.out.println("아이디가 입력되지 않았습니다");
+				JOptionPane.showMessageDialog(null,"아이디를 입력해주세요");
+				idTextField.requestFocus(true);
+				// 아이디가 빈문자
+			}else if(password1.equals("")) {
+				System.out.println("비밀번호가 입력되지 않았습니다");
+				JOptionPane.showMessageDialog(null,"비밀번호를 입력해주세요");
+				passwordField.requestFocus(true);
+				//비밀번호가 빈문자
+			}else if(name.equals("")) {
+				System.out.println("이름이 입력되지 않았습니다");
+				JOptionPane.showMessageDialog(null,"이름을 입력해주세요");
+				nameTextField.requestFocus(true);
+				//이름이 빈문자
+			}else if (password1.length() < 8 || password1.length() > 16) {
+			     System.out.println("");
+			     JOptionPane.showMessageDialog(null, "비밀번호 8-16자리로 입력하세요");
+			     passwordField.requestFocus(true);
+			     //비밀번호 8~16 자리
+			}
 				// 아이디 중복 체크
 				// 계속 진행
-			}
+			
 		});
 		contentPane.add(registerButton);
 		
 		JButton cancelButton = new JButton("\uCDE8\uC18C");
-		cancelButton.setBackground(Color.WHITE);
+		cancelButton.addActionListener(new ActionListener() {
+		});
+		cancelButton.setBackground(SystemColor.control);
 		cancelButton.setFont(new Font("굴림", Font.PLAIN, 30));
 		cancelButton.setBounds(472, 443, 122, 54);
 		cancelButton.addActionListener(v->{
@@ -141,6 +173,7 @@ public class RegisterFrame extends JFrame {
 		lblNewLabel_5.setFont(new Font("굴림", Font.PLAIN, 15));
 		lblNewLabel_5.setBounds(542, 162, 192, 35);
 		contentPane.add(lblNewLabel_5);
+		
 		
 		UIUtil.centreWindow(this);
 		setVisible(true);
