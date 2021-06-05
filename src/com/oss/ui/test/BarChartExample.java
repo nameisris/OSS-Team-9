@@ -5,6 +5,7 @@ import org.knowm.xchart.*;
 
 import com.oss.util.UIUtil;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -42,7 +43,9 @@ public class BarChartExample {
 
         categoryChart.getStyler().setSeriesColors(UIUtil.getColorArray(1));
         java.util.List<String> graphList = new ArrayList<>(sortedMap.keySet()); // 그래프 X축
-        java.util.List<Long> useList = new ArrayList<>(sortedMap.values()); // 그래프 Y축
+        java.util.List<Long> useList = new ArrayList<>(sortedMap.values());
+        categoryChart.getStyler().setYAxisTicksVisible(false);// 그래프 Y축
         categoryChart.addSeries("사용시간", graphList, useList); // 그래프 추가
+        categoryChart.getStyler().setChartBackgroundColor(new Color(255,255,255));
     }
 }

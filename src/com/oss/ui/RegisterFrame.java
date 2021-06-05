@@ -27,7 +27,11 @@ public class RegisterFrame extends JFrame {
 	private JTextField nameTextField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField2;
-
+	private void showLoginFrame() {
+		setVisible(false);
+		dispose();
+		new LoginFrame();   /*È¸¿ø°¡ÀÔ ¼º°ø½Ã È£ÃâÈ­¸é µÊ*/	
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -102,8 +106,7 @@ public class RegisterFrame extends JFrame {
 		contentPane.add(passwordField2);
 		
 		JButton idCheckButton = new JButton("\uC911\uBCF5\uD655\uC778");
-		idCheckButton.addActionListener(new ActionListener() {
-		});
+		
 		idCheckButton.setBackground(SystemColor.control);
 		idCheckButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
 		idCheckButton.setBounds(542, 104, 163, 34);
@@ -114,8 +117,7 @@ public class RegisterFrame extends JFrame {
 		
 		
 		JButton registerButton = new JButton("\uAC00\uC785");
-		registerButton.addActionListener(new ActionListener() {
-		});
+		
 		registerButton.setBackground(SystemColor.control);
 		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
 		registerButton.setBounds(258, 443, 122, 54);
@@ -157,8 +159,7 @@ public class RegisterFrame extends JFrame {
 		contentPane.add(registerButton);
 		
 		JButton cancelButton = new JButton("\uCDE8\uC18C");
-		cancelButton.addActionListener(new ActionListener() {
-		});
+		
 		cancelButton.setBackground(SystemColor.control);
 		cancelButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
 		cancelButton.setBounds(472, 443, 122, 54);
@@ -173,7 +174,7 @@ public class RegisterFrame extends JFrame {
 		lblNewLabel_5.setFont(new Font("±¼¸²", Font.PLAIN, 15));
 		lblNewLabel_5.setBounds(542, 162, 192, 35);
 		contentPane.add(lblNewLabel_5);
-		
+		setResizable(false);
 		
 		UIUtil.centreWindow(this);
 		setVisible(true);

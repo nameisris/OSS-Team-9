@@ -6,7 +6,7 @@ import org.knowm.xchart.XChartPanel;
 
 import com.oss.util.UIUtil;
 
-
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ public class PieChartExample {
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new)); // 사용시간 많은 순으로 소팅함 소팅이 불필요할 경우 빼도 상관없음
 
         pieChart.getStyler().setSeriesColors(UIUtil.getColorArray(sortedMap.size())); // 차트에 색깔 넣는 부분임
-
+        pieChart.getStyler().setChartBackgroundColor(new Color(255,255,255));
         // 차트에 값 넣는 부분
         sortedMap.forEach((k, v) -> {
             pieChart.addSeries(k, v);

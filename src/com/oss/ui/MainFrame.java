@@ -28,6 +28,13 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class MainFrame extends JFrame {
 
@@ -36,7 +43,8 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private PieChartExample pieChartExample;
 	private BarChartExample barChartExample;
-	private JTextField textField;
+	private JTable table;
+	private JButton excelButton;
 
 	/**
 	 * Launch the application.
@@ -68,16 +76,35 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("\uC0AC\uC6A9\uC885\uB8CC");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBounds(836, 620, 136, 31);
 		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 15));
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setBackground(SystemColor.control);
 		contentPane.add(btnNewButton);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		excelButton = new JButton("\uC5D1\uC140\uB85C \uC800\uC7A5");
+		excelButton.setBackground(SystemColor.control);
+		excelButton.setFont(new Font("굴림", Font.PLAIN, 15));
+		excelButton.setBounds(682, 620, 136, 31);
+		contentPane.add(excelButton);
+		tabbedPane.addChangeListener(l->{
+			int index = tabbedPane.getSelectedIndex();
+			
+			if(index==0) {
+				showExcelButton(false);
+			}else if(index==1) {
+				showExcelButton(true);
+			}
+		});
 		tabbedPane.setBounds(12, 20, 960, 590);
 		contentPane.add(tabbedPane);
 		
 		JPanel tablPanel = new JPanel();
+		tablPanel.setBackground(Color.WHITE);
 		tabbedPane.addTab("사용 시간", null, tablPanel, null);
 		tablPanel.setLayout(null);
 		
@@ -89,26 +116,25 @@ public class MainFrame extends JFrame {
 		JPanel tabPanel2 = new JPanel();
 		tabbedPane.addTab("기록", null, tabPanel2, null);
 		tabPanel2.setLayout(null);
+	
+		String[] header = {"프로그램","제목","시간"};
+		String[][] contents= {
+				{"1","2","3"}
+		};
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 41, 318, 510);
-		tabPanel2.add(panel);
-		panel.setLayout(null);
+		table = new JTable(contents, header);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setText("\uD504\uB85C\uADF8\uB7A8");
-		textField.setBounds(0, 0, 318, 21);
-		panel.add(textField);
-		textField.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(318, 41, 305, 510);
-		tabPanel2.add(panel_1);
+		System.out.println(table.getColumnName(0));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(623, 41, 332, 510);
-		tabPanel2.add(panel_2);
+		
+		JScrollPane jspane = new JScrollPane(table);
+		jspane.setBounds(12,55,931,496);
+		tabPanel2.add(jspane);
+		
+		JLabel timeLabel_1 = new JLabel("New label");
+		timeLabel_1.setBounds(115, 10, 230, 28);
+		tabPanel2.add(timeLabel_1);
 		scheduledExecutorService.scheduleAtFixedRate(()->{
 			timeLabel.setText(getNowString());
 		},0, 1, TimeUnit.SECONDS);
@@ -119,13 +145,22 @@ public class MainFrame extends JFrame {
 		barChartExample = new BarChartExample();
 		tablPanel.add(barChartExample.getBarChart());
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(34, 14, 69, 24);
-		tablPanel.add(lblNewLabel);
+		JLabel userLabel = new JLabel("New label");
+		userLabel.setBounds(42, 14, 69, 24);
+		tablPanel.add(userLabel);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(0, 10, 32, 28);
-		tablPanel.add(btnNewButton_1);
+		JButton userButton_1 = new JButton("");
+		
+		userButton_1.setBackground(Color.WHITE);
+		userButton_1.addActionListener(v -> {
+			setVisible(false);
+			dispose();
+			UserFrame userFrame = new UserFrame();
+			//TODO user button
+		});
+		userButton_1.setBounds(5, 10, 30, 28);
+		tablPanel.add(userButton_1);
+		
 		
 		UIUtil.centreWindow(this);
 		setVisible(true);
@@ -141,5 +176,13 @@ public class MainFrame extends JFrame {
 	private String getNowString() {
 		Date now = new Date();
 		return dateFormat.format(now);
+	}
+	/**
+	 * 엑셀 버튼 보여주게 하기
+	 * @param isShow 보여줄지 안 보여줄지
+	 */
+	private void showExcelButton(boolean isShow) {
+		excelButton.setVisible(isShow);
+	
 	}
 }
