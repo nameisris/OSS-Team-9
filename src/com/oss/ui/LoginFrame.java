@@ -10,18 +10,32 @@ import javax.swing.border.EmptyBorder;
 import com.oss.util.UIUtil;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField idField;
 	private JPasswordField passwordField;
-
+	private void showMainFrame() {
+		setVisible(false);
+		dispose();
+		new MainFrame();	
+	}/*로그인 성공시 메인화면 호출*/
+	private void unknownUser() {
+		JOptionPane.showMessageDialog(null,"해당 ID가 존재하지 않습니다");
+	}
+	private void passwordFailedUser() {
+		JOptionPane.showMessageDialog(null,"비밀번호가 일치하지 않습니다");
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -45,7 +59,7 @@ public class LoginFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 360);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -72,7 +86,8 @@ public class LoginFrame extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton loginButton = new JButton("\uB85C\uADF8\uC778");
-		loginButton.setBackground(Color.WHITE);
+		
+		loginButton.setBackground(SystemColor.control);
 		loginButton.setFont(new Font("굴림", Font.PLAIN, 25));
 		loginButton.setBounds(266, 125, 134, 46);
 		
@@ -87,7 +102,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(loginButton);
 		
 		JButton registerButton = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		registerButton.setBackground(Color.WHITE);
+		registerButton.setBackground(SystemColor.control);
 		registerButton.setFont(new Font("굴림", Font.PLAIN, 25));
 		registerButton.setBounds(266, 223, 134, 47);
 		
@@ -103,7 +118,7 @@ public class LoginFrame extends JFrame {
 		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 40));
 		lblNewLabel_2.setBounds(71, 28, 263, 47);
 		contentPane.add(lblNewLabel_2);
-		
+		setResizable(false);
 
 		UIUtil.centreWindow(this);
 		setVisible(true);
