@@ -15,22 +15,22 @@ import java.util.stream.Collectors;
  * 원형 그래프 모양 */
 public class PieChartExample {
     private PieChart pieChart;
-    XChartPanel<PieChart> xchartPanel;
-
+    private XChartPanel<PieChart> xchartPanel;
+    private Map<String,Long> data;
+    
     public PieChartExample() {
-        pieChartInitialize(); // 파이 차트 설정
-        xchartPanel = new XChartPanel<>(pieChart); // 기본 swing panel에는 차트를 올릴수 없어 Wrapper class인 XchartPanel 사용 필요
-        xchartPanel.setBounds(10, 350, 300, 200); //파이 차트가 나타날 위치 설정하는 부분
+        
     }
+    
 	public XChartPanel<PieChart> getChartPanel() {
 	     return xchartPanel;
-	}
+	}	
     /**
      * 파이 차트에 데이터 집어 넣기
      */
     private void pieChartInitialize() {
         pieChart = new PieChartBuilder().width(300).height(300).title("사용시간").build(); // 파이차트 객체 생성
-        Map<String, Long> data = DummyData.INSTANCE; // 데이터
+ 
 
         Map<String, Long> sortedMap = data.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
@@ -44,9 +44,15 @@ public class PieChartExample {
             pieChart.addSeries(k, v);
         });
 
+        xchartPanel = new XChartPanel<>(pieChart); // 기본 swing panel에는 차트를 올릴수 없어 Wrapper class인 XchartPanel 사용 필요
+        xchartPanel.setBounds(10, 350, 300, 200); //파이 차트가 나타날 위치 설정하는 부분
+
     }
 
-
+    public void setData(Map<String,Long> data) {
+    	this.data = data;
+    	pieChartInitialize(); // 파이 차트 설정
+    }
     
     }
 

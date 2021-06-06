@@ -2,6 +2,7 @@ package com.oss.ui;
 
 import com.oss.ui.test.PieChartExample;
 import com.oss.ui.test.BarChartExample;
+import com.oss.ui.test.DummyData;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -43,6 +44,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private PieChartExample pieChartExample;
 	private BarChartExample barChartExample;
+	private BarChartExample barChartExample2;
 	private JTable table;
 	private JButton excelButton;
 
@@ -114,6 +116,7 @@ public class MainFrame extends JFrame {
 		timeLabel.setText(getNowString());
 		tablPanel.add(timeLabel);
 		JPanel tabPanel2 = new JPanel();
+		tabPanel2.setBackground(Color.WHITE);
 		tabbedPane.addTab("±â·Ï", null, tabPanel2, null);
 		tabPanel2.setLayout(null);
 	
@@ -140,11 +143,17 @@ public class MainFrame extends JFrame {
 		},0, 1, TimeUnit.SECONDS);
 		
 		pieChartExample = new PieChartExample();
+		pieChartExample.setData(DummyData.INSTANCE);
 		tablPanel.add(pieChartExample.getChartPanel());
 		
 		barChartExample = new BarChartExample();
+		barChartExample.setData(DummyData.INSTANCE);
 		tablPanel.add(barChartExample.getBarChart());
 		
+		barChartExample2 = new BarChartExample();
+		barChartExample2.setData(DummyData.INSTANCE);
+		barChartExample2.getBarChart().setBounds(330,318,630,250);
+		tablPanel.add(barChartExample2.getBarChart());
 		JLabel userLabel = new JLabel("New label");
 		userLabel.setBounds(42, 14, 69, 24);
 		tablPanel.add(userLabel);

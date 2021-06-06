@@ -12,40 +12,48 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * ¸·´ë ¸ğ¾ç ±×·¡ÇÁ */
+ * ë§‰ëŒ€ ëª¨ì–‘ ê·¸ë˜í”„ */
 public class BarChartExample {
     private CategoryChart categoryChart;
     private XChartPanel<CategoryChart> xchartPanel;
+    private Map<String, Long> data;
 
     public BarChartExample() {
-        categoryChartInitialize(); // Ä«Å×°í¸® Â÷Æ® ¼³Á¤
-        xchartPanel = new XChartPanel<>(categoryChart); // ±âº» swing panel¿¡´Â Â÷Æ®¸¦ ¿Ã¸±¼ö ¾ø¾î Wrapper classÀÎ XchartPanel »ç¿ë ÇÊ¿ä
-        xchartPanel.setBounds(10, 50, 950, 280); //Â÷Æ®°¡ ³ªÅ¸³¯ À§Ä¡ ¼³Á¤ÇÏ´Â ºÎºĞ
+      
     }
     
     public XChartPanel<CategoryChart> getBarChart() {
     	return xchartPanel;
     }
+    
+    public void setData(Map<String, Long> data) {
+        this.data = data;
+        categoryChartInitialize();
+        xchartPanel = new XChartPanel<>(categoryChart); // ï¿½âº» swing panelï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Wrapper classï¿½ï¿½ XchartPanel ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
+        xchartPanel.setBounds(10, 50, 950, 280); //ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½
+
+    }
 
     /**
-     * Ä«Å×°í¸® Â÷Æ® ÃÊ±âÈ­
+     * ì¹´í…Œê³ ë¦¬ ì°¨íŠ¸ ì´ˆê¸°í™”
      */
     private void categoryChartInitialize() {
-        categoryChart = new CategoryChartBuilder().width(400).height(400).title("»ç¿ë½Ã°£").build();
+        categoryChart = new CategoryChartBuilder().width(400).height(400).title("ì‚¬ìš©ì‹œê°„").build();
 
-        Map<String, Long> data = DummyData.INSTANCE; // µ¥ÀÌÅÍ
 
         Map<String, Long> sortedMap = data.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new)); // »ç¿ë½Ã°£ ¸¹Àº ¼øÀ¸·Î ¼ÒÆÃÇÔ ¼ÒÆÃÀÌ ºÒÇÊ¿äÇÒ °æ¿ì »©µµ »ó°ü¾øÀ½
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new)); // ì‚¬ìš©ì‹œê°„ ë§ì€ ìˆœìœ¼ë¡œ ì†ŒíŒ…í•¨ ì†ŒíŒ…ì´ ë¶ˆí•„ìš”í•  ê²½ìš° ë¹¼ë„ ìƒê´€ì—†ìŒ
 
 
         categoryChart.getStyler().setSeriesColors(UIUtil.getColorArray(1));
-        java.util.List<String> graphList = new ArrayList<>(sortedMap.keySet()); // ±×·¡ÇÁ XÃà
+        java.util.List<String> graphList = new ArrayList<>(sortedMap.keySet()); // ê·¸ë˜í”„ Xì¶•
         java.util.List<Long> useList = new ArrayList<>(sortedMap.values());
-        categoryChart.getStyler().setYAxisTicksVisible(false);// ±×·¡ÇÁ YÃà
-        categoryChart.addSeries("»ç¿ë½Ã°£", graphList, useList); // ±×·¡ÇÁ Ãß°¡
+        categoryChart.getStyler().setYAxisTicksVisible(false);// ê·¸ë˜í”„ Yì¶•
+        categoryChart.addSeries("ì‚¬ìš©ì‹œê°„", graphList, useList); // ê·¸ë˜í”„ ì¶”ê°€
         categoryChart.getStyler().setChartBackgroundColor(new Color(255,255,255));
+        categoryChart.getStyler().setHasAnnotations(true);//ê·¸ë˜í”„ì•ˆì— ìˆ«ì ë„£ëŠ”ê±°
+        
     }
 }
