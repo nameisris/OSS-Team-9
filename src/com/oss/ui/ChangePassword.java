@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.oss.util.UIUtil;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -153,6 +156,10 @@ public class ChangePassword extends JFrame {
 			
 			
 		});
+		setVisible(true);
 		setResizable(false);
+		
+		UIUtil.centreWindow(this);
+		setVisible(true);
 	}
 }
