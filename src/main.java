@@ -6,14 +6,16 @@ import com.sun.jna.PointerType;
 import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.win32.StdCallLibrary;
 
+import com.oss.model.Process;
+
 public class main {
 	// Window 클래스형 ArrayList
 	// 프로그램 명, 탭 명, 시작 시간이 들어감
-	static ArrayList<Window> windows = new ArrayList<Window>();
+	static ArrayList<Process> processes = new ArrayList<Process>();
 
 	public static void main(String[] args) {
 		
-		GetWindowProcess gwp = new GetWindowProcess(windows);
+		GetWindowProcess gwp = new GetWindowProcess(processes);
 		gwp.start();
 		
 		try {
@@ -22,39 +24,21 @@ public class main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		String[][] wList = new String[windows.size()][3];
-		String w = "/";
-		if(windows != null) {
-			for(int i = 0;i < windows.size();i++) {
-				wList[i][0] = windows.get(i).getProgramName();
-				wList[i][1] = windows.get(i).getTabName();
-				wList[i][2] = windows.get(i).getStartTime();
-			}
-		}
-
-		for(int j = 0;j < wList.length;j++) {
-			w += wList[j][0] + wList[j][1] + "/";
-		}
-		
-		for(int k = 0;k < wList.length;k++) {
-			System.out.println(wList[k][0] + "\n" + wList[k][1] + "\n" + wList[k][2] + "\n\n");
-		}
 	}
 }
 
 class GetWindowProcess extends Thread {
-	ArrayList<Window> windows = new ArrayList<Window>();
+	ArrayList<Process> processes = new ArrayList<Process>();
 	long start; // 시작 시간
 	long end;   // 종료 시간
 	
-	GetWindowProcess(ArrayList<Window> windows){
-		this.windows = windows;
+	GetWindowProcess(ArrayList<Process> processes){
+		this.processes = processes;
 	}
 	
 	public void run() {
 		try {
-			Window firstWindow = new Window();
+			Process firstProcess = new Process();
 			String processInfo;
 			String[] ar;
 			String tabName = "";
@@ -84,10 +68,10 @@ class GetWindowProcess extends Thread {
 		    }
 		    
 		    // Window형 객체인 window에 값 넣어준 뒤, Window형 ArrayList인 windows에 넣어줌
-		    firstWindow.setProgramName(programName);
-		    firstWindow.setTabName(tabName);
-		    firstWindow.setStartTime(simple_format.format(date_now));
-		    windows.add(firstWindow);
+		    firstProcess.setProgramName(programName);
+		    firstProcess.setTabName(tabName);
+		    firstProcess.setStartTime(simple_format.format(date_now));
+		    processes.add(firstProcess);
 		    
 		    System.out.println(programName);
 		    System.out.println(tabName);
@@ -121,8 +105,8 @@ class GetWindowProcess extends Thread {
 			    	tabName += " - ";
 			    }
 			    
-			    if(programName.equals(windows.get(windows.size() - 1).getProgramName())
-			    		&& tabName.equals(windows.get(windows.size() - 1).getTabName())) {
+			    if(programName.equals(processes.get(processes.size() - 1).getProgramName())
+			    		&& tabName.equals(processes.get(processes.size() - 1).getTabName())) {
 				    // 1초 주기로 반복
 				    Thread.sleep(1000);
 				    //j++;
@@ -133,13 +117,13 @@ class GetWindowProcess extends Thread {
 				// end - start는 ConnectionTime 요청을 받은 시점의 시간에서 처음 연결된 시간을 뺀 값
 				end = System.currentTimeMillis();
 			    
-		    	Window window = new Window();
+				Process process = new Process();
 		    	
 			    // Window형 객체인 window에 값 넣어준 뒤, Wind ow형 ArrayList인 windows에 넣어줌
-			    window.setProgramName(programName);
-			    window.setTabName(tabName);
-			    window.setStartTime(simple_format.format(date_now));
-			    windows.add(window);
+			    process.setProgramName(programName);
+			    process.setTabName(tabName);
+			    process.setStartTime(simple_format.format(date_now));
+			    processes.add(process);
 			    
 			    System.out.println(programName);
 			    System.out.println(tabName);
