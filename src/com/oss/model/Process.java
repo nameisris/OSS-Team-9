@@ -1,14 +1,15 @@
+package com.oss.model;
 
-public class Window {
+public class Process {
 	private String programName;		// 프로그램 명
 	private String tabName;			// 탭 명
 	private String startTime;		// 시작 시간
 	
-	public Window() {
+	public Process() {
 		
 	}
 	
-	public Window(String programName, String tabName, String startTime) {
+	public Process(String programName, String tabName, String startTime) {
 		this.programName = programName;
 		this.tabName = tabName;
 		this.startTime = startTime;

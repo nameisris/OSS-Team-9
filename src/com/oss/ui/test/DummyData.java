@@ -6,24 +6,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ´õ¹Ìµ¥ÀÌÅÍ(ÀÓ½Ã Å×½ºÆ®¿ë µ¥ÀÌÅÍ)
+ * ë”ë¯¸ë°ì´í„°(ì„ì‹œ í…ŒìŠ¤íŠ¸ìš© ë°ì´í„°)
  
  */
 public class DummyData {
     /**
-     * String : ÃÖ»óÀ§ ÇÁ·Î±×·¥ ¸í
-     * Long : »ç¿ë ½Ã°£(ÃÊ) ¶ó°í °¡Á¤ÇÑ´Ù.
+     * String : ìµœìƒìœ„ í”„ë¡œê·¸ë¨ ëª…
+     * Long : ì‚¬ìš© ì‹œê°„(ì´ˆ) ë¼ê³  ê°€ì •í•œë‹¤.
      */
     private static final Map<String, Long> USE_TIME_MAP = new HashMap<>();
 
     /**
-     * ½ÇÁ¦ °øÀ¯ÇÒ Map
-     * UnModifiedMapÀ» °øÀ¯ÇØ¼­ ´Ù¸¥ µ¥¼­´Â °ª ¼öÁ¤ ºÒ°¡´ÉÇÏµµ·ÏÇÔ
+     * ì‹¤ì œ ê³µìœ í•  Map
+     * UnModifiedMapì„ ê³µìœ í•´ì„œ ë‹¤ë¥¸ ë°ì„œëŠ” ê°’ ìˆ˜ì • ë¶ˆê°€ëŠ¥í•˜ë„ë¡í•¨
      */
     public static final Map<String, Long> INSTANCE;
 
     /**
-     * MapÀÇ °ªÀ» Á¤Àû ÃÊ±âÈ­ ÇÑ´Ù.
+     * Mapì˜ ê°’ì„ ì •ì  ì´ˆê¸°í™” í•œë‹¤.
      */
     static {
         USE_TIME_MAP.put("IntelliJ IDEA", 3600L);
@@ -35,7 +35,7 @@ public class DummyData {
     }
 
     /**
-     * °´Ã¼ »ı¼º ºÒÇÊ¿ä
+     * ê°ì²´ ìƒì„± ë¶ˆí•„ìš”
      */
     private DummyData() {
     }

@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * ¿øÇü ±×·¡ÇÁ ¸ğ¾ç */
+ * ì›í˜• ê·¸ë˜í”„ ëª¨ì–‘ */
 public class PieChartExample {
     private PieChart pieChart;
     private XChartPanel<PieChart> xchartPanel;
@@ -26,33 +26,32 @@ public class PieChartExample {
 	     return xchartPanel;
 	}	
     /**
-     * ÆÄÀÌ Â÷Æ®¿¡ µ¥ÀÌÅÍ Áı¾î ³Ö±â
+     * íŒŒì´ ì°¨íŠ¸ì— ë°ì´í„° ì§‘ì–´ ë„£ê¸°
      */
     private void pieChartInitialize() {
-        pieChart = new PieChartBuilder().width(300).height(300).title("»ç¿ë½Ã°£").build(); // ÆÄÀÌÂ÷Æ® °´Ã¼ »ı¼º
+        pieChart = new PieChartBuilder().width(300).height(300).title("ì‚¬ìš©ì‹œê°„").build(); // íŒŒì´ì°¨íŠ¸ ê°ì²´ ìƒì„±
  
 
         Map<String, Long> sortedMap = data.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new)); // »ç¿ë½Ã°£ ¸¹Àº ¼øÀ¸·Î ¼ÒÆÃÇÔ ¼ÒÆÃÀÌ ºÒÇÊ¿äÇÒ °æ¿ì »©µµ »ó°ü¾øÀ½
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new)); // ì‚¬ìš©ì‹œê°„ ë§ì€ ìˆœìœ¼ë¡œ ì†ŒíŒ…í•¨ ì†ŒíŒ…ì´ ë¶ˆí•„ìš”í•  ê²½ìš° ë¹¼ë„ ìƒê´€ì—†ìŒ
 
-        pieChart.getStyler().setSeriesColors(UIUtil.getColorArray(sortedMap.size())); // Â÷Æ®¿¡ »ö±ò ³Ö´Â ºÎºĞÀÓ
+        pieChart.getStyler().setSeriesColors(UIUtil.getColorArray(sortedMap.size())); // ì°¨íŠ¸ì— ìƒ‰ê¹” ë„£ëŠ” ë¶€ë¶„ì„
         pieChart.getStyler().setChartBackgroundColor(new Color(255,255,255));
-        // Â÷Æ®¿¡ °ª ³Ö´Â ºÎºĞ
+        // ì°¨íŠ¸ì— ê°’ ë„£ëŠ” ë¶€ë¶„
         sortedMap.forEach((k, v) -> {
             pieChart.addSeries(k, v);
         });
 
-        xchartPanel = new XChartPanel<>(pieChart); // ±âº» swing panel¿¡´Â Â÷Æ®¸¦ ¿Ã¸±¼ö ¾ø¾î Wrapper classÀÎ XchartPanel »ç¿ë ÇÊ¿ä
-        xchartPanel.setBounds(10, 350, 300, 200); //ÆÄÀÌ Â÷Æ®°¡ ³ªÅ¸³¯ À§Ä¡ ¼³Á¤ÇÏ´Â ºÎºĞ
+        xchartPanel = new XChartPanel<>(pieChart); // ê¸°ë³¸ swing panelì—ëŠ” ì°¨íŠ¸ë¥¼ ì˜¬ë¦´ìˆ˜ ì—†ì–´ Wrapper classì¸ XchartPanel ì‚¬ìš© í•„ìš”
+        xchartPanel.setBounds(10, 350, 300, 200); //íŒŒì´ ì°¨íŠ¸ê°€ ë‚˜íƒ€ë‚  ìœ„ì¹˜ ì„¤ì •í•˜ëŠ” ë¶€ë¶„
 
     }
 
     public void setData(Map<String,Long> data) {
     	this.data = data;
-    	pieChartInitialize(); // ÆÄÀÌ Â÷Æ® ¼³Á¤
+    	pieChartInitialize(); // íŒŒì´ ì°¨íŠ¸ ì„¤ì •
     }
     
-    }
-
+}

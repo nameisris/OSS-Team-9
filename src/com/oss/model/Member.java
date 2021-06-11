@@ -1,25 +1,26 @@
+package com.oss.model;
 
-public class User {
-	private String uID;
+public class Member {
+	private String userid;
 	private String password;
 	private String name;
 	
-	public User() {
+	public Member() {
 		
 	}
 	
-	public User(String uID, String password, String name) {
-		this.uID = uID;
+	public Member(String userid, String password, String name) {
+		this.userid = userid;
 		this.password = password;
 		this.name = name;
 	}
 	
-	public String getUID() {
-		return uID;
+	public String getUserid() {
+		return userid;
 	}
 	
-	public void setUID(String uID) {
-		this.uID = uID;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	
 	public String getPassword() {
@@ -38,3 +39,4 @@ public class User {
 		this.name = name;
 	}
 }
+

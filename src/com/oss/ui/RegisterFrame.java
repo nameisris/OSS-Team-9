@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.oss.util.UIUtil;
 
+import com.oss.dao.MemberDao;
+import com.oss.model.Member;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -30,7 +33,7 @@ public class RegisterFrame extends JFrame {
 	private void showLoginFrame() {
 		setVisible(false);
 		dispose();
-		new LoginFrame();   /*È¸¿ø°¡ÀÔ ¼º°ø½Ã È£ÃâÈ­¸é µÊ*/	
+		new LoginFrame();   /*íšŒì›ê°€ì… ì„±ê³µì‹œ í˜¸ì¶œí™”ë©´ ë¨*/	
 	}
 	/**
 	 * Launch the application.
@@ -62,18 +65,18 @@ public class RegisterFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		Font font30 = new Font("±¼¸²", Font.PLAIN, 30);
-		lblNewLabel.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		Font font30 = new Font("êµ´ë¦¼", Font.PLAIN, 30);
+		lblNewLabel.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		lblNewLabel.setBounds(347, 10, 130, 35);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uC544\uC774\uB514");
-		lblNewLabel_1.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		lblNewLabel_1.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		lblNewLabel_1.setBounds(105, 104, 96, 35);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("\uBE44\uBC00\uBC88\uD638");
-		lblNewLabel_2.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		lblNewLabel_2.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		lblNewLabel_2.setBounds(105, 162, 122, 35);
 		contentPane.add(lblNewLabel_2);
 		
@@ -83,7 +86,7 @@ public class RegisterFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("\uC774\uB984");
-		lblNewLabel_4.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		lblNewLabel_4.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		lblNewLabel_4.setBounds(105, 319, 96, 35);
 		contentPane.add(lblNewLabel_4);
 		
@@ -108,9 +111,24 @@ public class RegisterFrame extends JFrame {
 		JButton idCheckButton = new JButton("\uC911\uBCF5\uD655\uC778");
 		
 		idCheckButton.setBackground(SystemColor.control);
-		idCheckButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		idCheckButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		idCheckButton.setBounds(542, 104, 163, 34);
 		idCheckButton.addActionListener(v->{
+			MemberDao dao = MemberDao.getInstance();
+			
+			if (idTextField.getText().equals("")) {
+				JOptionPane.showMessageDialog(null,"IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				idTextField.requestFocus(); // í¬ì»¤ìŠ¤ ì´ë™
+			} else {
+				if (dao.checkID(idTextField.getText())) {
+					JOptionPane.showMessageDialog(null, idTextField.getText()+"ëŠ” ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤.");  
+				} else {
+					JOptionPane.showMessageDialog(null, idTextField.getText()+"ëŠ” ì¤‘ë³µì…ë‹ˆë‹¤.");
+					idTextField.setText(""); // tfUseridì˜ textë°•ìŠ¤ì§€ìš°ê¸°
+					idTextField.requestFocus(); // í¬ì»¤ìŠ¤ ì´ë™
+				}
+			}
+			
 			System.out.println("id = "+idTextField.getText());
 		});
 		contentPane.add(idCheckButton);
@@ -119,7 +137,7 @@ public class RegisterFrame extends JFrame {
 		JButton registerButton = new JButton("\uAC00\uC785");
 		
 		registerButton.setBackground(SystemColor.control);
-		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		registerButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		registerButton.setBounds(258, 443, 122, 54);
 		registerButton.addActionListener(v->{
 			String id = idTextField.getText();
@@ -127,33 +145,48 @@ public class RegisterFrame extends JFrame {
 			String password1 = new String(passwordField.getPassword());
 			String password2 = new String(passwordField2.getPassword());
 			
-			if(!password1.equals(password2)) { // ºñ¹Ğ¹øÈ£ µÎ°³ ´Ù¸¦ ¶§
-				System.out.println("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
-				JOptionPane.showMessageDialog(null,"ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+			Member member = new Member();
+			member.setUserid(id);
+			member.setPassword(password1);
+			member.setName(name);
+			MemberDao dao = MemberDao.getInstance();
+			
+			if(!password1.equals(password2)) { // ë¹„ë°€ë²ˆí˜¸ ë‘ê°œ ë‹¤ë¥¼ ë•Œ
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 				passwordField.requestFocus(true);
 			}else if(id.equals("")){
-				System.out.println("¾ÆÀÌµğ°¡ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-				JOptionPane.showMessageDialog(null,"¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				System.out.println("ì•„ì´ë””ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				idTextField.requestFocus(true);
-				// ¾ÆÀÌµğ°¡ ºó¹®ÀÚ
+				// ì•„ì´ë””ê°€ ë¹ˆë¬¸ì
 			}else if(password1.equals("")) {
-				System.out.println("ºñ¹Ğ¹øÈ£°¡ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-				JOptionPane.showMessageDialog(null,"ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				passwordField.requestFocus(true);
-				//ºñ¹Ğ¹øÈ£°¡ ºó¹®ÀÚ
+				//ë¹„ë°€ë²ˆí˜¸ê°€ ë¹ˆë¬¸ì
 			}else if(name.equals("")) {
-				System.out.println("ÀÌ¸§ÀÌ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-				JOptionPane.showMessageDialog(null,"ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				System.out.println("ì´ë¦„ì´ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				nameTextField.requestFocus(true);
-				//ÀÌ¸§ÀÌ ºó¹®ÀÚ
+				//ì´ë¦„ì´ ë¹ˆë¬¸ì
 			}else if (password1.length() < 8 || password1.length() > 16) {
 			     System.out.println("");
-			     JOptionPane.showMessageDialog(null, "ºñ¹Ğ¹øÈ£ 8-16ÀÚ¸®·Î ÀÔ·ÂÇÏ¼¼¿ä");
+			     JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ 8-16ìë¦¬ë¡œ ì…ë ¥í•˜ì„¸ìš”");
 			     passwordField.requestFocus(true);
-			     //ºñ¹Ğ¹øÈ£ 8~16 ÀÚ¸®
+			     //ë¹„ë°€ë²ˆí˜¸ 8~16 ìë¦¬
+			} else {
+				if (dao.saveUserInfo(member)) {
+					// íšŒì›ê°€ì…ê³¼ ë™ì‹œì— í•´ë‹¹ ì‚¬ìš©ìì— ëŒ€í•œ ì‚¬ìš©ê¸°ë¡ í…Œì´ë¸”ê³¼ ì‚¬ìš©ì‹œê°„ í…Œì´ë¸” ìƒì„±
+					dao.createProcessTable(id);
+					dao.createTimeRecordTable(id);
+					dao.saveSampleTimeRecord(id);
+					JOptionPane.showMessageDialog(null, "íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+					showLoginFrame();
+				} else {
+					JOptionPane.showMessageDialog(null, "ê¸°ì…ëœ ë‚´ìš©ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
+				}
 			}
-				// ¾ÆÀÌµğ Áßº¹ Ã¼Å©
-				// °è¼Ó ÁøÇà
 			
 		});
 		contentPane.add(registerButton);
@@ -161,7 +194,7 @@ public class RegisterFrame extends JFrame {
 		JButton cancelButton = new JButton("\uCDE8\uC18C");
 		
 		cancelButton.setBackground(SystemColor.control);
-		cancelButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		cancelButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		cancelButton.setBounds(472, 443, 122, 54);
 		cancelButton.addActionListener(v->{
 			JFrame loginFrame = new LoginFrame();
@@ -171,7 +204,7 @@ public class RegisterFrame extends JFrame {
 		contentPane.add(cancelButton);
 		
 		JLabel lblNewLabel_5 = new JLabel("8~16\uC790\uB9AC\uB85C \uC785\uB825\uD574\uC8FC\uC138\uC694");
-		lblNewLabel_5.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		lblNewLabel_5.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 15));
 		lblNewLabel_5.setBounds(542, 162, 192, 35);
 		contentPane.add(lblNewLabel_5);
 		setResizable(false);
