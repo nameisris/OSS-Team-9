@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.oss.util.UIUtil;
 
+import com.oss.dao.MemberDao;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -21,14 +23,13 @@ import javax.swing.JPasswordField;
 public class ChangePassword extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel nameLabel;
 	private JButton changePasswordButton;
 	private JButton cancelButton;
 	private JLabel lblNewLabel;
 	private JPasswordField previousPasswordField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_2;
-	private JTextField nameField;
+	static String id;
 
 	/**
 	 * Launch the application.
@@ -45,11 +46,17 @@ public class ChangePassword extends JFrame {
 			}
 		});
 	}
+	
+	public ChangePassword() {
+		this(null);
+	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public ChangePassword() {
+	public ChangePassword(String id) {
+		this.id = id;
 		setTitle("Window TIme");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 785, 600);
@@ -60,44 +67,42 @@ public class ChangePassword extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel changePassowordLable = new JLabel("\uC554\uD638 \uBCC0\uACBD");
-		changePassowordLable.setFont(new Font("±¼¸²", Font.BOLD, 20));
+		changePassowordLable.setFont(new Font("êµ´ë¦¼", Font.BOLD, 20));
 		changePassowordLable.setBounds(347, 10, 130, 35);
 		contentPane.add(changePassowordLable);
 		
 		JLabel previousPassowordLabel = new JLabel("\uC774\uC804 \uC554\uD638");
-		previousPassowordLabel.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		previousPassowordLabel.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		previousPassowordLabel.setBounds(105, 104, 136, 35);
 		contentPane.add(previousPassowordLabel);
 		
 		JLabel makePasswordLabel = new JLabel("\uC554\uD638 \uB9CC\uB4E4\uAE30");
-		makePasswordLabel.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		makePasswordLabel.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		makePasswordLabel.setBounds(79, 165, 162, 35);
 		contentPane.add(makePasswordLabel);
 		
 		JLabel confirmPasswordLabel = new JLabel("\uC554\uD638 \uD655\uC778");
-		confirmPasswordLabel.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		confirmPasswordLabel.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		confirmPasswordLabel.setBounds(105, 232, 136, 35);
 		contentPane.add(confirmPasswordLabel);
 		
-		nameLabel = new JLabel("\uC774\uB984");
-		nameLabel.setFont(new Font("±¼¸²", Font.PLAIN, 30));
-		nameLabel.setBounds(172, 309, 61, 35);
-		contentPane.add(nameLabel);
-		
 		changePasswordButton = new JButton("\uBCC0\uACBD");
 		changePasswordButton.setBackground(SystemColor.control);
-		changePasswordButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		changePasswordButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		changePasswordButton.setBounds(258, 443, 122, 54);
 		contentPane.add(changePasswordButton);
+		changePasswordButton.addActionListener(v->{
+
+		});
 		
 		cancelButton = new JButton("\uCDE8\uC18C");
 		cancelButton.setBackground(SystemColor.control);
-		cancelButton.setFont(new Font("±¼¸²", Font.PLAIN, 30));
+		cancelButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 30));
 		cancelButton.setBounds(472, 443, 122, 54);
 		contentPane.add(cancelButton);
 		
 		lblNewLabel = new JLabel("8~16\uC790\uB9AC\uB85C \uC785\uB825\uD574\uC8FC\uC138\uC694");
-		lblNewLabel.setFont(new Font("±¼¸²", Font.PLAIN, 15));
+		lblNewLabel.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 15));
 		lblNewLabel.setBounds(542, 162, 192, 35);
 		contentPane.add(lblNewLabel);
 		
@@ -112,49 +117,43 @@ public class ChangePassword extends JFrame {
 		passwordField_2 = new JPasswordField();
 		passwordField_2.setBounds(361, 232, 130, 38);
 		contentPane.add(passwordField_2);
-		
-		nameField = new JTextField();
-		nameField.setBounds(361, 319, 130, 38);
-		contentPane.add(nameField);
-		nameField.setColumns(10);
+
 		changePasswordButton.addActionListener(v->{
-			String password = new String(passwordField.getPassword()); // ¹Ù²Ü ºñ¹ø 1
-			String password2 = new String(passwordField_2.getPassword()); // ¹Ù²Ü ºñ¹ø 2
-			String name = nameField.getText(); // ÀÌ¸§
-			String previousPassword = new String(previousPasswordField.getPassword()); // ÀÌÀü ÆĞ½º¿öµå
-			if(!password.equals(password2)) { // ºñ¹Ğ¹øÈ£ µÎ°³ ´Ù¸¦ ¶§
-				System.out.println("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
-				JOptionPane.showMessageDialog(null,"ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+			MemberDao dao = MemberDao.getInstance();
+			
+			String password = new String(passwordField.getPassword()); // ë°”ê¿€ ë¹„ë²ˆ 1
+			String password2 = new String(passwordField_2.getPassword()); // ë°”ê¿€ ë¹„ë²ˆ 2
+			String previousPassword = new String(previousPasswordField.getPassword()); // ì´ì „ íŒ¨ìŠ¤ì›Œë“œ
+			
+			if(!password.equals(password2)) { // ë¹„ë°€ë²ˆí˜¸ ë‘ê°œ ë‹¤ë¥¼ ë•Œ
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+				passwordField.requestFocus(true);
+			} else if(previousPassword.equals("")) { // ì´ì „ë¹„ë°€ë²ˆí˜¸ê°€ ë¹ˆë¬¸ì
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ì´ì „ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				previousPasswordField.requestFocus(true);
-		}else if(previousPassword.equals("")) {
-				System.out.println("ºñ¹Ğ¹øÈ£°¡ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-				JOptionPane.showMessageDialog(null,"ÀÌÀüºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
-				previousPasswordField.requestFocus(true);
-				//ÀÌÀüºñ¹Ğ¹øÈ£°¡ ºó¹®ÀÚ
-		}else if(password.equals("")) {
-			System.out.println("ºñ¹Ğ¹øÈ£°¡ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-			JOptionPane.showMessageDialog(null,"ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
-			previousPasswordField.requestFocus(true);
-			//ºñ¹Ğ¹øÈ£°¡ ºó¹®ÀÚ
-		}else if(name.equals("")) {
-			System.out.println("ÀÌ¸§ÀÌ ÀÔ·ÂµÇÁö ¾Ê¾Ò½À´Ï´Ù");
-			JOptionPane.showMessageDialog(null,"ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä");
-			nameField.requestFocus(true);
-			//ÀÌ¸§ÀÌ ºó¹®ÀÚ
-		}else if (password.length() < 8 || password.length() > 16) {
-		     System.out.println("");
-		     JOptionPane.showMessageDialog(null, "ºñ¹Ğ¹øÈ£ 8-16ÀÚ¸®·Î ÀÔ·ÂÇÏ¼¼¿ä");
-		     previousPasswordField.requestFocus(true);
-		     //ºñ¹Ğ¹øÈ£ 8~16 ÀÚ¸®
-		}
+			} else if(password.equals("")) { //ë¹„ë°€ë²ˆí˜¸ê°€ ë¹ˆë¬¸ì
+				System.out.println("ë¹„ë°€ë²ˆí˜¸ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+				JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
+				passwordField.requestFocus(true);
+			} else if (password.length() < 8 || password.length() > 16) { // ë¹„ë°€ë²ˆí˜¸ 8~16 ìë¦¬
+				System.out.println("");
+				JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ 8-16ìë¦¬ë¡œ ì…ë ¥í•˜ì„¸ìš”");
+				passwordField.requestFocus(true);
+			} else {
+				if(dao.updatePassword(id, previousPassword, password)) {
+					JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì™„ë£Œ");
+					dispose();
+					new UserFrame(id);
+				}
+			}
 		});
 		
 		cancelButton.addActionListener(v->{
 			setVisible(false);
 			dispose();
-			UserFrame userFrame = new UserFrame();
-			
-			
+			new UserFrame(id);
 		});
 		setVisible(true);
 		setResizable(false);

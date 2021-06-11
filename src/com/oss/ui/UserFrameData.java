@@ -1,15 +1,13 @@
 package com.oss.ui;
 
 import java.util.Map;
-import java.util.Objects;
 
 /**
- * »ç¿ëÀÚ Á¤º¸ È­¸éÀÇ ±×·¡ÇÁ¿¡ µé¾î°¥ data object
-
+ * ì‚¬ìš©ì ì •ë³´ í™”ë©´ì˜ ê·¸ë˜í”„ì— ë“¤ì–´ê°ˆ data object
  */
 public class UserFrameData {
-     private String dateString; // ³¯Â¥, Date ¶Ç´Â String »ç¿ë, Date·Î ÇÒ °æ¿ì User Frame¿¡¼­ formatting ÇÊ¿ä
-    private Map<String, Long> programNameTimeMap; // ÇØ´ç ³¯Â¥¿¡ »ç¿ëÇÑ ÇÁ·Î±×·¥ ÀÌ¸§, ½Ã°£(ÃÊ) map°´Ã¼
+    private String dateString; // ë‚ ì§œ, Date ë˜ëŠ” String ì‚¬ìš©, Dateë¡œ í•  ê²½ìš° User Frameì—ì„œ formatting í•„ìš”
+    private Map<String, Long> programNameTimeMap; // í•´ë‹¹ ë‚ ì§œì— ì‚¬ìš©í•œ í”„ë¡œê·¸ë¨ ì´ë¦„, ì‹œê°„(ì´ˆ) mapê°ì²´
     public void setDateString(String dateString) {
         this.dateString = dateString;
     }

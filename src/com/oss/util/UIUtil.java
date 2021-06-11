@@ -6,18 +6,18 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * UI °øÅë À¯Æ¿¸®Æ¼
+ * UI ê³µí†µ ìœ í‹¸ë¦¬í‹°
  */
 public class UIUtil {
     private static Random random = new Random();
     /**
-     * »ı¼º ºÒÇÊ¿ä Å¬·¡½ºÀÓ
+     * ìƒì„± ë¶ˆí•„ìš” í´ë˜ìŠ¤ì„
      */
     private UIUtil() {
     }
 
     /**
-     * frameÀ» È­¸éÀÇ Á¤Áß¾Ó locationÀ¸·Î ¼³Á¤ÇØÁØ´Ù.
+     * frameì„ í™”ë©´ì˜ ì •ì¤‘ì•™ locationìœ¼ë¡œ ì„¤ì •í•´ì¤€ë‹¤.
      *
      * @param frame frame
      */
@@ -29,10 +29,10 @@ public class UIUtil {
     }
 
     /**
-     * ±×·¡ÇÁ¿¡ µé¾î°¥ µ¥ÀÌÅÍµé¿¡ ´ëÇØ ·£´ıÇÑ »ö»óÀ» »Ì¾Æ³½´Ù.
+     * ê·¸ë˜í”„ì— ë“¤ì–´ê°ˆ ë°ì´í„°ë“¤ì— ëŒ€í•´ ëœë¤í•œ ìƒ‰ìƒì„ ë½‘ì•„ë‚¸ë‹¤.
      *
-     * @param count »Ì¾Æ¾ß ÇÒ »ö»ó(µ¥ÀÌÅÍ) °³¼ö
-     * @return ·£´ı »ö±ò ¹è¿­
+     * @param count ë½‘ì•„ì•¼ í•  ìƒ‰ìƒ(ë°ì´í„°) ê°œìˆ˜
+     * @return ëœë¤ ìƒ‰ê¹” ë°°ì—´
      */
     public static Color[] getColorArray(int count) {
         Color[] result = new Color[count];

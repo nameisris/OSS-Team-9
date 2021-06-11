@@ -1,3 +1,5 @@
+package com.oss.util;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;

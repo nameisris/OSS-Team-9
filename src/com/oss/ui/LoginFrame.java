@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.oss.dao.MemberDao;
 import com.oss.util.UIUtil;
 
 import javax.swing.JLabel;
@@ -25,16 +26,16 @@ public class LoginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField idField;
 	private JPasswordField passwordField;
-	private void showMainFrame() {
+	private void showMainFrame(String id) {
 		setVisible(false);
 		dispose();
-		new MainFrame();	
-	}/*·Î±×ÀÎ ¼º°ø½Ã ¸ŞÀÎÈ­¸é È£Ãâ*/
+		new MainFrame(id);	
+	}/*ë¡œê·¸ì¸ ì„±ê³µì‹œ ë©”ì¸í™”ë©´ í˜¸ì¶œ*/
 	private void unknownUser() {
-		JOptionPane.showMessageDialog(null,"ÇØ´ç ID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+		JOptionPane.showMessageDialog(null,"í•´ë‹¹ IDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 	}
 	private void passwordFailedUser() {
-		JOptionPane.showMessageDialog(null,"ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+		JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 	}
 	/**
 	 * Launch the application.
@@ -65,36 +66,56 @@ public class LoginFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uC544\uC774\uB514");
-		lblNewLabel.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		lblNewLabel.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 25));
 		lblNewLabel.setBounds(0, 125, 74, 47);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uBE44\uBC00\uBC88\uD638");
-		lblNewLabel_1.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		lblNewLabel_1.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 25));
 		lblNewLabel_1.setBounds(0, 215, 128, 63);
 		contentPane.add(lblNewLabel_1);
 		
 		idField = new JTextField();
-		idField.setFont(new Font("±¼¸²", Font.PLAIN, 20));
+		idField.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 20));
 		idField.setBounds(104, 126, 150, 47);
 		contentPane.add(idField);
 		idField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("±¼¸²", Font.PLAIN, 20));
+		passwordField.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 20));
 		passwordField.setBounds(104, 224, 150, 47);
 		contentPane.add(passwordField);
 		
 		JButton loginButton = new JButton("\uB85C\uADF8\uC778");
 		
 		loginButton.setBackground(SystemColor.control);
-		loginButton.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		loginButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 25));
 		loginButton.setBounds(266, 125, 134, 46);
 		
 		loginButton.addActionListener((v)->{
 			String id = idField.getText();
 			String password = new String(passwordField.getPassword());
-			System.out.println("·Î±×ÀÎ ¹öÆ°");
+			
+			MemberDao dao = MemberDao.getInstance();
+			
+			//ê° ì…ë ¥í•­ëª© ê³µë°±ì—¬ë¶€ í™•ì¸í•œ ë’¤ ë¡œê·¸ì¸
+			if(idField.getText().equals("")) {
+				JOptionPane.showMessageDialog(null,"IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				idField.requestFocus(); //í¬ì»¤ìŠ¤ ì´ë™
+			} else if(passwordField.getText().equals("")) {
+				JOptionPane.showMessageDialog(null,"ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				passwordField.requestFocus(); //í¬ì»¤ìŠ¤ ì´ë™
+			} else {
+				if (dao.findByUserIDAndPassword(id, password)) { //ë¡œê·¸ì¸
+					JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ ì„±ê³µ");
+					//íšŒì› ì •ë³´ ë¦¬ìŠ¤íŠ¸ í™”ë©´ ì´ë™ê³¼ ë™ì‹œì— userid ì„¸ì…˜ê°’ìœ¼ë¡œ ë„˜ê¹€.
+						showMainFrame(id);
+
+				} else {
+					JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ ì‹¤íŒ¨");
+				}
+			}
+			System.out.println("ë¡œê·¸ì¸ ë²„íŠ¼");
 			System.out.println("id = "+id);
 			System.out.println("password = " + password);
 		});
@@ -103,11 +124,11 @@ public class LoginFrame extends JFrame {
 		
 		JButton registerButton = new JButton("\uD68C\uC6D0\uAC00\uC785");
 		registerButton.setBackground(SystemColor.control);
-		registerButton.setFont(new Font("±¼¸²", Font.PLAIN, 25));
+		registerButton.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 25));
 		registerButton.setBounds(266, 223, 134, 47);
 		
 		registerButton.addActionListener( v -> {
-			// È¸¿ø°¡ÀÔ Ã³¸®
+			// íšŒì›ê°€ì… ì²˜ë¦¬
 			JFrame register = new RegisterFrame();
 			setVisible(false);
 			dispose();
@@ -115,7 +136,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(registerButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("Window Time");
-		lblNewLabel_2.setFont(new Font("±¼¸²", Font.PLAIN, 40));
+		lblNewLabel_2.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 40));
 		lblNewLabel_2.setBounds(71, 28, 263, 47);
 		contentPane.add(lblNewLabel_2);
 		setResizable(false);
