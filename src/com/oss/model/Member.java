@@ -1,9 +1,9 @@
 package com.oss.model;
 
 public class Member {
-	private String userid;
-	private String password;
-	private String name;
+	private String userid;		// 아이디
+	private String password;	// 비밀번호 
+	private String name;		// 이름
 	
 	public Member() {
 		

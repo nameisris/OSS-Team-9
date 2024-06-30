@@ -10,7 +10,7 @@ public class DBConnection {
 		
 		Connection conn=null; // JDBC와의 연결 객체 초기화
 		
-		String url="jdbc:oracle:thin:@192.168.25.4:1521:xe"; // localhost는 ip 주소, xe는 SID
+		String url="jdbc:oracle:thin:@localhost:1521:xe"; // localhost는 ip 주소, xe는 SID
 		String id="WIN";
 		String pw="1234";
 		String driver="oracle.jdbc.driver.OracleDriver";

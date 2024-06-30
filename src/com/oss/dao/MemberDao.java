@@ -11,7 +11,6 @@ import java.util.Vector;
 import com.oss.model.Member;
 import com.oss.model.Process;
 import com.oss.model.TimeRecord;
-import com.oss.dao.DBConnection;
 
 public class MemberDao {
 	private MemberDao() {}

@@ -1,13 +1,9 @@
 package com.oss.model;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 public class TimeRecord {
-	private String programName;
-	private Long usageTime;
-	private String recordedDate;
+	private String programName;		// 프로그램명
+	private Long usageTime;			// 사용 시간
+	private String recordedDate;	// 사용 일자
 	
 	public TimeRecord() {
 		
