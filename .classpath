@@ -41,5 +41,7 @@
 	<classpathentry kind="lib" path="C:/Users/Ryu/eclipse-workspace/OSS-Team-9/lib/xmlbeans-4.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ryu/eclipse-workspace/OSS-Team-9/lib/xmlgraphics-commons-2.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ryu/eclipse-workspace/OSS-Team-9/lib/xmlsec-2.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryu/eclipse-workspace/OSS-Team-9/lib/jna-5.8.0.jar" sourcepath="C:/Users/Ryu/eclipse-workspace/OSS-Team-9/lib/jna-5.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ryu/eclipse-workspace/OSS-Team-9/lib/jna-platform-5.8.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

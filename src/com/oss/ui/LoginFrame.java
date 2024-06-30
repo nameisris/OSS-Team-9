@@ -1,6 +1,5 @@
 package com.oss.ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,9 +16,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.SystemColor;
-import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame {
 

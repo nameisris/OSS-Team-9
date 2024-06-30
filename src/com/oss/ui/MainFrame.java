@@ -5,20 +5,10 @@ import com.oss.dao.MemberDao;
 import com.oss.model.Process;
 import com.oss.model.TimeRecord;
 import com.oss.ui.test.BarChartExample;
-import com.oss.ui.test.DummyData;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
 import com.oss.util.UIUtil;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,35 +16,30 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Font;
 
 import com.sun.jna.Native;
 import com.sun.jna.PointerType;
 import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.win32.StdCallLibrary;
-
-import com.oss.model.Process;
 
 public class MainFrame extends JFrame {
 
@@ -77,7 +62,6 @@ public class MainFrame extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -88,8 +72,6 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
-		
-
 	}
 	
 	public MainFrame() {

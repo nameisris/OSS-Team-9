@@ -1,7 +1,6 @@
 package com.oss.ui;
 
 import com.oss.ui.test.BarChartExample;
-import com.oss.ui.test.DummyData;
 import com.oss.util.UIUtil;
 
 import com.oss.dao.MemberDao;
@@ -19,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class UserFrame extends JFrame {
